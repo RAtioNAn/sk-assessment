@@ -47,7 +47,7 @@ In other word system is eventually consistent because of its async design.
 #### Running
 * Clone repo.
   ```shell
-  git clone  https://
+  git clone  https://github.com/RAtioNAn/sk-assessment.git
   ```
 * Change working dir.
   ```shell

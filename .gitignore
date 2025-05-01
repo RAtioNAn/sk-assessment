@@ -1,3 +1,7 @@
-.idea/
+.idea/**
 kafka/
 zookeeper/
+**/.idea
+**/.gradle
+**/build
+**/.kotlin
