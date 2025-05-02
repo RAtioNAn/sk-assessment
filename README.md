@@ -108,10 +108,10 @@ __PS__ If you have errors building images with gradle on Mac go to ./docker/conf
   }'
   ```
 * ```shell
-  curl --location 'http://localhost:8090/api/query/stats/team/team123'
+  curl --location 'http://localhost:8080/api/query/stats/team/team123'
   ```
 * ```shell
-  curl --location 'http://localhost:8090/api/query/stats/player/player123'
+  curl --location 'http://localhost:8080/api/query/stats/player/player123'
   ```
   
 <br />
