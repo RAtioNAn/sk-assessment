@@ -21,7 +21,7 @@ public class GameStatsService {
     @Autowired
     private KafkaTemplate<String, String> template;
 
-    @Value("spring.kafka.topics.event")
+    @Value("${spring.kafka.topics.events}")
     private String eventTopic;
 
     ObjectMapper objectMapper = new ObjectMapper();

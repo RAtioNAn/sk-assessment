@@ -17,6 +17,6 @@ public record GameStatsEvent(
         int steals,
         int blocks,
         int fouls,
-        int turnovers,
+        double turnovers,
         double minutes_played) {
 }

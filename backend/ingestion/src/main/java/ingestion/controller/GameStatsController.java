@@ -3,6 +3,7 @@ package ingestion.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import ingestion.model.api.GameStatsRequest;
 import ingestion.service.GameStatsService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +24,7 @@ public class GameStatsController {
     private GameStatsService gameStatsService;
 
     @PostMapping(value = "/ingest", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> registerDevice(@RequestBody GameStatsRequest sendRequest) {
+    public ResponseEntity<Object> registerDevice(@Valid @RequestBody GameStatsRequest sendRequest) {
 
         try {
             gameStatsService.sendEvent(sendRequest);

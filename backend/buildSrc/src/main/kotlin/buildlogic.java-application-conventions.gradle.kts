@@ -1,7 +1,7 @@
 plugins {
     java
     application
-    id("com.bmuschko.docker-remote-api")
+    id("com.bmuschko.docker-java-application")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 }
@@ -21,20 +21,6 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:3.3.5")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-
-    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    testCompileOnly("org.projectlombok:lombok:1.18.36")
-
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.36")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 java {
@@ -47,3 +33,18 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
+application {
+    mainClass = "${project.name}.Runner"
+}
+
+
+docker {
+    javaApplication {
+        baseImage.set("bellsoft/liberica-openjdk-debian:21.0.7-9")
+        maintainer.set("rationan@fastmail.com")
+//        ports.set(listOf(8080, 5701))
+        images.set(setOf("ingestion:latest"))
+        mainClassName.set(application.mainClass.get())
+        jvmArgs.set(listOf("-Xms256m", "-Xmx2048m"))
+    }
+}
