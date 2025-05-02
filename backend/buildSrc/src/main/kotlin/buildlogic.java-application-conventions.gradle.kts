@@ -28,10 +28,6 @@ java {
     }
 }
 
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-}
-
 application {
     mainClass.set("${project.name}.Runner")
 }
