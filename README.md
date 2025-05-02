@@ -80,15 +80,14 @@ In other word system is eventually consistent because of its async design.
   ```shell
   docker-compose up -d load-balancer
   ```
-
 __PS__ If you have errors building images with gradle on Mac go to ./docker/config.json and remove __"credsStore" : "desktop"__ line.
 
 <br />
 
 #### Endpoints
 * http://localhost:8080/api/ingest
-* http://localhost:8090/api/query/stats/team/{teamId}
-* http://localhost:8090/api/query/stats/player/{playerId}
+* http://localhost:8080/api/query/stats/team/{teamId}
+* http://localhost:8080/api/query/stats/player/{playerId}
 
 #### Requests examples
 * ```shell
