@@ -95,7 +95,7 @@ __PS__ If you have errors building images with gradle on Mac go to ./docker/conf
   --header 'Content-Type: application/json' \
   --data '{
   "gameId": "game124",
-  "playerId": "playerId145",
+  "playerId": "player123",
   "teamId" : "team123",
   "points": 2,
   "rebounds": 2,
