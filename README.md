@@ -51,25 +51,66 @@ In other word system is eventually consistent because of its async design.
   ```
 * Change working dir.
   ```shell
-  cd sk-assessment
+  cd sk-assessment/backend
   ```
 * Build docker images for backend.
   ```shell
-  ./gradlew 
+  ./gradlew ingestion:dockerBuildImage
+  ./gradlew query:dockerBuildImage 
   ```
 * Spin-up infra.
   ```shell
+  cd ..
   docker-compose up -d kafka-init kafka-ui clickhouse-ui
   ```
-* Check all services started successfully and are healthy.
-  ```shell
-  docker-compose ps
-  ```
+* Goto localhost:8082 and login with the following credentials
+  * Host - http://localhost:8123
+  * Username - default
+  * Password - default
+  * Copy and paste queries from [Clickhouse.sql](Clickhouse.sql)
+  * Run queries one by one in the same order they appear in the file.
+  * ![Img1](img1.png)
+  * ![Img2](img2.png)
+
 * Spin-up backend.
+  ```shell
+  docker-compose up -d query ingestion
+  ```
+* Spin-up load-balancer.
   ```shell
   docker-compose up -d load-balancer
   ```
-* Check all services started successfully and are healthy.
-  ```shell
-  docker-compose ps
+
+__PS__ If you have errors building images with gradle on Mac go to ./docker/config.json and remove __"credsStore" : "desktop"__ line.
+
+<br />
+
+#### Endpoints
+* http://localhost:8080/api/ingest
+* http://localhost:8090/api/query/stats/team/{teamId}
+* http://localhost:8090/api/query/stats/player/{playerId}
+
+#### Requests examples
+* ```shell
+  curl --location 'http://localhost:8080/api/ingest' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "gameId": "game124",
+  "playerId": "playerId145",
+   "teamId" : "team123",
+   "points": 2,
+   "rebounds": 2,
+   "assists": 5,
+   "steals": 1,
+   "blocks": 2,
+   "fouls": 3,
+   "turnovers": 2.0,
+   "minutes_played": 36.5
+   }'
+  ```
+* ```shell
+  curl --location 'http://localhost:8090/api/query/stats/team/team123'
+  ```
+* ```shell
+  curl --location 'http://localhost:8090/api/query/stats/player/player123'
   ```
