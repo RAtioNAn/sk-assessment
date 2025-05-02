@@ -97,16 +97,16 @@ __PS__ If you have errors building images with gradle on Mac go to ./docker/conf
   --data '{
   "gameId": "game124",
   "playerId": "playerId145",
-   "teamId" : "team123",
-   "points": 2,
-   "rebounds": 2,
-   "assists": 5,
-   "steals": 1,
-   "blocks": 2,
-   "fouls": 3,
-   "turnovers": 2.0,
-   "minutes_played": 36.5
-   }'
+  "teamId" : "team123",
+  "points": 2,
+  "rebounds": 2,
+  "assists": 5,
+  "steals": 1,
+  "blocks": 2,
+  "fouls": 3,
+  "turnovers": 2.0,
+  "minutes_played": 36.5
+  }'
   ```
 * ```shell
   curl --location 'http://localhost:8090/api/query/stats/team/team123'
@@ -114,3 +114,13 @@ __PS__ If you have errors building images with gradle on Mac go to ./docker/conf
 * ```shell
   curl --location 'http://localhost:8090/api/query/stats/player/player123'
   ```
+  
+<br />
+
+### Deployment
+* AWS Route53 for DNS
+* AWS ALB for load balancing
+* AWS EKS for workload
+  * Dedicated node group for servers (t3, t4 family machines)
+  * Dedicated node group for Clickhouse nodes with rb5 machines family and fast EBS (like io2 storage family).
+  * Dedicated node group for Kafka nodes with rb5 machines family and fast EBS (like io2 storage family).
