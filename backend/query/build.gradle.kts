@@ -1,11 +1,8 @@
 plugins {
     id("buildlogic.java-application-conventions")
-    id("org.flywaydb.flyway") version "11.8.0"
 }
 
-flyway {
-    url = "jdbc:h2:mem:mydb"
-    user = ""
-    password = ""
-    locations = arrayOf("classpath:migrations")
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("com.clickhouse:clickhouse-jdbc:0.8.5")
 }
