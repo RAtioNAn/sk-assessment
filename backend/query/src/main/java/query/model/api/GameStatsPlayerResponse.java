@@ -1,4 +1,10 @@
 package query.model.api;
 
-public class GameStatsPlayerResponse {
+import lombok.Builder;
+import query.model.entity.GameStatsPlayerEntity;
+
+import java.util.List;
+
+@Builder
+public record GameStatsPlayerResponse(List<GameStatsPlayerEntity> playersStats) {
 }

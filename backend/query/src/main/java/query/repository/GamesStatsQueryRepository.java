@@ -26,8 +26,9 @@ public class GamesStatsQueryRepository {
               avg(turnovers) AS avg_turnovers,
               avg(minutes_played) AS avg_minutes
             FROM game_stats
-            GROUP BY playerId;
-            """.stripIndent();
+            GROUP BY playerId, teamId
+            HAVING playerId == '%s';
+            """.replace("\n", " ");
 
     private static final String TEAM_QUERY = """
             SELECT
@@ -41,15 +42,18 @@ public class GamesStatsQueryRepository {
               avg(turnovers) AS avg_turnovers,
               avg(minutes_played) AS avg_minutes
             FROM game_stats
-            GROUP BY teamId;
-            """.stripIndent();
+            GROUP BY teamId
+            HAVING teamId == '%s';
+            """.replace("\n", " ");
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public List<GameStatsPlayerEntity> getGameStatsPerPlayer(String playerId) {
+        var query = String.format(PLAYER_QUERY, playerId);
 
-        return jdbcTemplate.query(PLAYER_QUERY, (rs, rowNum) ->
+
+        return jdbcTemplate.query(query, (rs, rowNum) ->
                 GameStatsPlayerEntity.builder()
                         .teamId(rs.getString("teamId"))
                         .playerId(rs.getString("playerId"))
@@ -67,8 +71,9 @@ public class GamesStatsQueryRepository {
     }
 
     public List<GameStatsTeamEntity> getGameStatsPerTeam(String teamId) {
+        var query = String.format(TEAM_QUERY, teamId);
 
-        return jdbcTemplate.query(PLAYER_QUERY, (rs, rowNum) ->
+        return jdbcTemplate.query(query, (rs, rowNum) ->
                 GameStatsTeamEntity.builder()
                         .teamId(rs.getString("teamId"))
                         .points(rs.getDouble(("avg_points")))
