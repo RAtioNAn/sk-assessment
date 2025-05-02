@@ -2,7 +2,6 @@ package ingestion.model.event;
 
 import lombok.Builder;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Builder
@@ -10,6 +9,7 @@ public record GameStatsEvent(
         UUID eventId,
         Long timestamp,
         String gameId,
+        String teamId,
         String playerId,
         int points,
         int rebounds,

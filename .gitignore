@@ -1,6 +1,7 @@
 .idea/**
-kafka/
-zookeeper/
+kafka/**
+zookeeper/**
+clickhouse/**
 **/.idea
 **/.gradle
 **/build

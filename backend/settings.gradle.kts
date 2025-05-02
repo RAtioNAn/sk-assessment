@@ -3,4 +3,5 @@ plugins {
 }
 
 rootProject.name = "backend"
-include("ingestion", "query",)
+
+include("ingestion", "query")

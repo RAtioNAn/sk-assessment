@@ -6,6 +6,7 @@ import lombok.Builder;
 @Builder
 public record GameStatsRequest(
         @NotBlank String gameId,
+        @NotBlank String teamId,
         @NotBlank String playerId,
         @Min(0) @Max(6) int points,
         @Min(0) @Max(6) int rebounds,

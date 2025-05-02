@@ -32,6 +32,7 @@ public class GameStatsService {
                 .eventId(UUID.randomUUID())
                 .timestamp(Instant.now().toEpochMilli())
                 .gameId(stats.gameId())
+                .teamId(stats.teamId())
                 .playerId(stats.playerId())
                 .assists(stats.assists())
                 .blocks(stats.blocks())

@@ -34,9 +34,8 @@ tasks.named<Test>("test") {
 }
 
 application {
-    mainClass = "${project.name}.Runner"
+    mainClass.set("${project.name}.Runner")
 }
-
 
 docker {
     javaApplication {
