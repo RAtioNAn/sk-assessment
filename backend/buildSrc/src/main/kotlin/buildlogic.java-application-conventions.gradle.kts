@@ -40,7 +40,7 @@ docker {
     javaApplication {
         baseImage.set("bellsoft/liberica-openjdk-debian:21.0.7-9")
         maintainer.set("rationan@fastmail.com")
-        images.set(setOf("ingestion:latest"))
+        images.set(setOf("${project.name}:latest"))
         mainClassName.set(application.mainClass.get())
         jvmArgs.set(listOf("-Xms256m", "-Xmx2048m"))
     }
